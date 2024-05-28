@@ -2,13 +2,14 @@
 Read file into texts and calls.
 It's ok if you don't understand how to read files.
 """
+
 import csv
 
-with open('texts.csv', 'r') as f:
+with open("texts.csv", "r") as f:
     reader = csv.reader(f)
     texts = list(reader)
 
-with open('calls.csv', 'r') as f:
+with open("calls.csv", "r") as f:
     reader = csv.reader(f)
     calls = list(reader)
 
@@ -25,3 +26,16 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
+call_numbers = set([call[0] for call in calls])
+receive_numbers = set([call[1] for call in calls])
+send_text_numbers = set([text[0] for text in texts])
+receive_text_numbers = set([text[1] for text in texts])
+
+telemarketers = list( dict.fromkeys(list(
+    ((call_numbers - receive_numbers) - send_text_numbers) - receive_text_numbers
+)))
+
+telemarketers.sort()
+
+print("These numbers could be telemarketers:")
+print(telemarketers)
