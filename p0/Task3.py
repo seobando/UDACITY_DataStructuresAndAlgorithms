@@ -2,13 +2,14 @@
 Read file into texts and calls.
 It's ok if you don't understand how to read files.
 """
+
 import csv
 
-with open('texts.csv', 'r') as f:
+with open("texts.csv", "r") as f:
     reader = csv.reader(f)
     texts = list(reader)
 
-with open('calls.csv', 'r') as f:
+with open("calls.csv", "r") as f:
     reader = csv.reader(f)
     calls = list(reader)
 
@@ -44,3 +45,43 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+fixed_lines = []
+mobile_numbers = []
+telemarketers = []
+banglore_caller = 0
+banglore_receiver = 0
+
+for call in calls:
+    if call[0].startswith("(080)"):
+        banglore_caller+=1
+        receiver_call = call[1]
+        if receiver_call.startswith("(140)"):
+            telemarketer = receiver_call[1:4]
+            if telemarketer not in telemarketers:
+                telemarketers.append(telemarketer)
+        elif receiver_call.startswith("("):
+            fixed_line = receiver_call[1:4]
+            if fixed_line not in fixed_lines:
+                fixed_lines.append(fixed_line)
+        elif " " in receiver_call:
+            mobile_number = receiver_call[0:4]
+            if mobile_number not in mobile_numbers:
+                mobile_numbers.append(mobile_number)
+        if receiver_call.startswith("(080)"):
+          banglore_receiver+=1
+
+#telemarketers.sort()
+fixed_lines.sort()
+mobile_numbers.sort()
+
+# Part A
+print("The numbers called by people in Bangalore have codes:")
+for fixed_line in fixed_lines:
+    print(fixed_line, " - Fixed line")
+for mobile_number in mobile_numbers:
+    print(mobile_number, " - Mobile number")
+
+# Part B
+banglore_percentage = round((banglore_receiver/banglore_caller)*100,2)
+print(f"{banglore_percentage} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
