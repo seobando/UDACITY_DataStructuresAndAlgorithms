@@ -22,11 +22,11 @@ September 2016.".
 
 phone_dict={}
 
-for call in calls:
+for call in calls: #-------------------------------------------------------------- O(n)
 	phone_dict[call[0]] = phone_dict.get(call[0], 0) + int(call[3])
 	phone_dict[call[1]] = phone_dict.get(call[1], 0) + int(call[3])
      
-max_telephone_number = max(phone_dict, key=phone_dict.get)
+max_telephone_number = max(phone_dict, key=phone_dict.get) #---------------------- O(n)
 max_duration = phone_dict[max_telephone_number]
 
 print(f"{max_telephone_number} spent the longest time, {max_duration} seconds, on the phone during September 2016.")

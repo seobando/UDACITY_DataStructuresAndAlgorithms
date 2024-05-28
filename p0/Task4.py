@@ -26,16 +26,16 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
-call_numbers = set([call[0] for call in calls])
-receive_numbers = set([call[1] for call in calls])
-send_text_numbers = set([text[0] for text in texts])
-receive_text_numbers = set([text[1] for text in texts])
+call_numbers = set([call[0] for call in calls]) #----------------------------- O(n)
+receive_numbers = set([call[1] for call in calls]) #-------------------------- O(n)
+send_text_numbers = set([text[0] for text in texts]) #------------------------ O(n)
+receive_text_numbers = set([text[1] for text in texts]) #--------------------- O(n)
 
 telemarketers = list( dict.fromkeys(list(
     ((call_numbers - receive_numbers) - send_text_numbers) - receive_text_numbers
 )))
 
-telemarketers.sort()
+telemarketers.sort() #-------------------------------------------------------- O(n log n)
 
 print("These numbers could be telemarketers:")
 print(*telemarketers, sep='\n')

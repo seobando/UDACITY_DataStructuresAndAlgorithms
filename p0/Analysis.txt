@@ -8,7 +8,7 @@ O(n)
 O(n)
 
 ## Task 3
-O(n log n)
+O(n^2)
 
 ## Task 4
 O(n log n)

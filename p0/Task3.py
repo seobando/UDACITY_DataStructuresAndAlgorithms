@@ -52,35 +52,33 @@ telemarketers = []
 banglore_caller = 0
 banglore_receiver = 0
 
-for call in calls:
+for call in calls: #-------------------------------------------------------------- O(n)
     if call[0].startswith("(080)"):
         banglore_caller+=1
         receiver_call = call[1]
         if receiver_call.startswith("(140)"):
             telemarketer = receiver_call[1:4]
-            if telemarketer not in telemarketers:
+            if telemarketer not in telemarketers: #------------------------------- O(n) At second level O(n^2)
                 telemarketers.append(telemarketer)
         elif receiver_call.startswith("("):
             fixed_line = receiver_call[0:receiver_call.find(')')+1]
-            if fixed_line not in fixed_lines:
+            if fixed_line not in fixed_lines: #----------------------------------- O(n) At second level O(n^2)
                 fixed_lines.append(fixed_line)
         elif " " in receiver_call:
             mobile_number = receiver_call[0:4]
-            if mobile_number not in mobile_numbers:
+            if mobile_number not in mobile_numbers: #----------------------------- O(n) At second level O(n^2)
                 mobile_numbers.append(mobile_number)
         if receiver_call.startswith("(080)"):
           banglore_receiver+=1
 
 #telemarketers.sort()
-fixed_lines.sort()
-mobile_numbers.sort()
+fixed_lines.sort() #----------------------------- O(n log n)
+mobile_numbers.sort() #-------------------------- O(n log n)
 
 # Part A
 print("The numbers called by people in Bangalore have codes:")
-for fixed_line in fixed_lines:
-    print(fixed_line)
-for mobile_number in mobile_numbers:
-    print(mobile_number)
+print(*fixed_lines, sep='\n')
+print(*mobile_numbers, sep='\n')
 
 # Part B
 banglore_percentage = round((banglore_receiver/banglore_caller)*100,2)

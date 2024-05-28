@@ -24,7 +24,7 @@ Print a message:
 # Declare variables
 unique_tele_nums = set()
 
-for call in calls:
+for call in calls: #-------------------------------------------------------------- O(n)
 	unique_tele_nums.add(call[0])
 	unique_tele_nums.add(call[1])
 
