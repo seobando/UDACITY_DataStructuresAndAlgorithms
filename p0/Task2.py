@@ -20,3 +20,14 @@ Print a message:
 September 2016.".
 """
 
+max_duration = 0
+max_telephone_number = 0
+
+for call in calls:
+    duration = int(call[-1])
+    telephone_number = call[0]
+    if  duration > max_duration:
+        max_duration = duration
+        max_telephone_number = telephone_number
+
+print(f"{max_telephone_number} spent the longest time, {max_duration} seconds, on the phone during September 2016.")

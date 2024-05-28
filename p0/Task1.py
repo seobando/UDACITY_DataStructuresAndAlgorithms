@@ -68,7 +68,7 @@ def get_unique_values_from_lists(unique_numbers, list_1, list_2):
     return unique_numbers
 
 
-# Run
+# Execution
 for p in range(max_len):
 
     if p < texts_len:
