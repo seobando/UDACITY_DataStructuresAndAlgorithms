@@ -61,7 +61,7 @@ for call in calls:
             if telemarketer not in telemarketers:
                 telemarketers.append(telemarketer)
         elif receiver_call.startswith("("):
-            fixed_line = receiver_call[1:4]
+            fixed_line = receiver_call[0:receiver_call.find(')')+1]
             if fixed_line not in fixed_lines:
                 fixed_lines.append(fixed_line)
         elif " " in receiver_call:
@@ -78,9 +78,9 @@ mobile_numbers.sort()
 # Part A
 print("The numbers called by people in Bangalore have codes:")
 for fixed_line in fixed_lines:
-    print(fixed_line, " - Fixed line")
+    print(fixed_line)
 for mobile_number in mobile_numbers:
-    print(mobile_number, " - Mobile number")
+    print(mobile_number)
 
 # Part B
 banglore_percentage = round((banglore_receiver/banglore_caller)*100,2)

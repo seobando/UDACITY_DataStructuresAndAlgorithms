@@ -38,4 +38,4 @@ telemarketers = list( dict.fromkeys(list(
 telemarketers.sort()
 
 print("These numbers could be telemarketers:")
-print(telemarketers)
+print(*telemarketers, sep='\n')

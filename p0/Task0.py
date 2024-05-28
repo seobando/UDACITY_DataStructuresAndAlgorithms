@@ -21,4 +21,4 @@ Print messages:
 """
 
 print(f"First record of texts, {texts[0][0]} texts {texts[0][1]} at time {texts[0][2]}")
-print(f"Last record of calls, {calls[0][0]} calls {calls[0][1]} at time {calls[0][2]}, lasting {calls[0][3]} seconds")
+print('Last record of calls, {0} calls {1} at time {2}, lasting {3} seconds'.format(*calls[-1]))
