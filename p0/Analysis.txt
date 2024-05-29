@@ -1,3 +1,8 @@
+Analysis:
+
+The analysis was done by pointing out in each task the algorithm complexity of looping, 
+find by max or sorting operations and then select the one with the worst result as follows:
+
 ## Task 0
 O(1)
 

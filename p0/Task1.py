@@ -24,8 +24,14 @@ Print a message:
 # Declare variables
 unique_tele_nums = set()
 
-for call in calls: #-------------------------------------------------------------- O(n)
-	unique_tele_nums.add(call[0])
-	unique_tele_nums.add(call[1])
+for (
+    call
+) in calls:  # -------------------------------------------------------------- O(n)
+    unique_tele_nums.add(call[0])
+    unique_tele_nums.add(call[1])
+
+for text in texts:  # ------------------------------------------------------------- O(n)
+    unique_tele_nums.add(text[0])
+    unique_tele_nums.add(text[1])
 
 print(f"There are {len(unique_tele_nums)} different telephone numbers in the records.")
