@@ -1,16 +1,27 @@
+from collections import OrderedDict
+
 class LRU_Cache(object):
 
     def __init__(self, capacity):
         # Initialize class variables
-        pass
+        self.capacity = capacity
+        self.cache = OrderedDict()
 
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent.
-        pass
+        if key in self.cache:
+            value = self.cache.pop(key)
+            self.cache[key] = value  # reinsert the key to mark it as recently used
+            return value
+        return -1
 
     def set(self, key, value):
         # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
-        pass
+        if key in self.cache:
+            self.cache.pop(key)
+        elif len(self.cache) >= self.capacity:
+            self.cache.popitem(last=False)  # remove the first (least recently used) item
+        self.cache[key] = value
 
 
 our_cache = LRU_Cache(5)
@@ -36,7 +47,20 @@ our_cache.get(
 ## and two of them must include edge cases, such as null, empty or very large values
 
 ## Test Case 1
-
+cache_single = LRU_Cache(1)
+cache_single.set(1, 1)
+assert cache_single.get(1) == 1  # returns 1
+cache_single.set(2, 2)
+assert cache_single.get(1) == -1  # returns -1 because 1 was evicted
+assert cache_single.get(2) == 2  # returns 2
 ## Test Case 2
-
+empty_cache = LRU_Cache(2)
+assert empty_cache.get(1) == -1  # returns -1 because cache is empty
 ## Test Case 3
+large_cache = LRU_Cache(3)
+large_cache.set(1, "a" * 1000)  # very large string value
+large_cache.set(2, "b" * 1000)
+large_cache.set(3, "c" * 1000)
+assert large_cache.get(1) == "a" * 1000  # returns the large string
+large_cache.set(4, "d" * 1000)
+assert large_cache.get(2) == -1  # returns -1 because 2 was evicted
