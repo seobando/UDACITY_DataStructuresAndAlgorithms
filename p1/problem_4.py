@@ -19,61 +19,55 @@ class Group(object):
     def get_name(self):
         return self.name
 
-
+# Function to check if the user is in the group or its subgroups
 def is_user_in_group(user, group):
-    """
-    Return True if user is in the group, False otherwise.
-
-    Args:
-      user(str): user name/id
-      group(class:Group): group to check user membership against
-    """
     if user in group.get_users():
         return True
-    for subgroup in group.get_groups():
-        if is_user_in_group(user, subgroup):
+    for sub_group in group.get_groups():
+        if is_user_in_group(user, sub_group):
             return True
     return False
 
+# Test Cases
 
-# Test cases
-if __name__ == "__main__":
-    # Setup groups
-    parent = Group("parent")
-    child = Group("child")
-    sub_child = Group("subchild")
+# Test Case 1: Check if "sub_child_user" is in the parent group
+parent = Group("parent")
+child = Group("child")
+sub_child = Group("subchild")
 
-    sub_child_user = "sub_child_user"
-    sub_child.add_user(sub_child_user)
+sub_child_user = "sub_child_user"
+sub_child.add_user(sub_child_user)
 
-    child.add_group(sub_child)
-    parent.add_group(child)
+child.add_group(sub_child)
+parent.add_group(child)
 
-    # Test Case 1: User in nested subgroup
-    assert is_user_in_group("sub_child_user", parent) == True  # should return True
+print(is_user_in_group("sub_child_user", parent))  # Expected output: True
 
-    # Test Case 2: User not in any group
-    assert is_user_in_group("non_existent_user", parent) == False  # should return False
+# Test Case 2: Check if a non-existent user is in the parent group
+print(is_user_in_group("non_existent_user", parent))  # Expected output: False
 
-    # Test Case 3: User in top-level group
-    top_level_user = "top_level_user"
-    parent.add_user(top_level_user)
-    assert is_user_in_group(top_level_user, parent) == True  # should return True
+# Test Case 3: Check if a user in a deeply nested subgroup is found
+deep_nested_group = Group("deep_nested")
+deep_user = "deep_user"
+deep_nested_group.add_user(deep_user)
+sub_child.add_group(deep_nested_group)
 
-    # Test Case 4: Edge case with empty group structure
-    empty_group = Group("empty")
-    assert is_user_in_group("any_user", empty_group) == False  # should return False
+print(is_user_in_group("deep_user", parent))  # Expected output: True
 
-    # Test Case 5: Large number of nested groups
-    large_group = Group("large")
-    current_group = large_group
-    for i in range(1000):
-        new_group = Group(f"subgroup_{i}")
-        current_group.add_group(new_group)
-        current_group = new_group
-    deep_user = "deep_user"
-    current_group.add_user(deep_user)
-    assert is_user_in_group(deep_user, large_group) == True  # should return True
+# Edge Case 1: Check with an empty group
+empty_group = Group("empty")
+print(is_user_in_group("any_user", empty_group))  # Expected output: False
 
-    print("All test cases passed!")
+# Edge Case 2: Check with None as user
+print(is_user_in_group(None, parent))  # Expected output: False
 
+# Edge Case 3: Large group with many users and subgroups
+large_group = Group("large")
+for i in range(1000):
+    user = f"user_{i}"
+    large_group.add_user(user)
+    sub_group = Group(f"subgroup_{i}")
+    large_group.add_group(sub_group)
+
+print(is_user_in_group("user_999", large_group))  # Expected output: True
+print(is_user_in_group("user_1000", large_group))  # Expected output: False
