@@ -79,71 +79,70 @@ def intersection(llist_1, llist_2):
 
     return intersection_list
 
-# Test cases
-if __name__ == "__main__":
-    # Test Case 1
-    linked_list_1 = LinkedList()
-    linked_list_2 = LinkedList()
 
-    element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 21]
-    element_2 = [6, 32, 4, 9, 6, 1, 11, 21, 1]
+# Test Case 1
+linked_list_1 = LinkedList()
+linked_list_2 = LinkedList()
 
-    for i in element_1:
-        linked_list_1.append(i)
+element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 21]
+element_2 = [6, 32, 4, 9, 6, 1, 11, 21, 1]
 
-    for i in element_2:
-        linked_list_2.append(i)
+for i in element_1:
+    linked_list_1.append(i)
 
-    print("Union Test Case 1:", union(linked_list_1, linked_list_2))
-    print("Intersection Test Case 1:", intersection(linked_list_1, linked_list_2))
+for i in element_2:
+    linked_list_2.append(i)
 
-    # Test Case 2
-    linked_list_3 = LinkedList()
-    linked_list_4 = LinkedList()
+print("Union Test Case 1:", union(linked_list_1, linked_list_2))
+print("Intersection Test Case 1:", intersection(linked_list_1, linked_list_2))
 
-    element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 23]
-    element_2 = [1, 7, 8, 9, 11, 21, 1]
+# Test Case 2
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
 
-    for i in element_1:
-        linked_list_3.append(i)
+element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 23]
+element_2 = [1, 7, 8, 9, 11, 21, 1]
 
-    for i in element_2:
-        linked_list_4.append(i)
+for i in element_1:
+    linked_list_3.append(i)
 
-    print("Union Test Case 2:", union(linked_list_3, linked_list_4))
-    print("Intersection Test Case 2:", intersection(linked_list_3, linked_list_4))
+for i in element_2:
+    linked_list_4.append(i)
 
-    # Test Case 3: Edge case with empty linked lists
-    linked_list_5 = LinkedList()
-    linked_list_6 = LinkedList()
+print("Union Test Case 2:", union(linked_list_3, linked_list_4))
+print("Intersection Test Case 2:", intersection(linked_list_3, linked_list_4))
 
-    print("Union Test Case 3:", union(linked_list_5, linked_list_6))
-    print("Intersection Test Case 3:", intersection(linked_list_5, linked_list_6))
+# Test Case 3: Edge case with empty linked lists
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
 
-    # Test Case 4: One empty linked list
-    linked_list_7 = LinkedList()
-    linked_list_8 = LinkedList()
+print("Union Test Case 3:", union(linked_list_5, linked_list_6))
+print("Intersection Test Case 3:", intersection(linked_list_5, linked_list_6))
 
-    element_4 = [1, 2, 3, 4, 5]
-    for i in element_4:
-        linked_list_8.append(i)
+# Test Case 4: One empty linked list
+linked_list_7 = LinkedList()
+linked_list_8 = LinkedList()
 
-    print("Union Test Case 4:", union(linked_list_7, linked_list_8))
-    print("Intersection Test Case 4:", intersection(linked_list_7, linked_list_8))
+element_4 = [1, 2, 3, 4, 5]
+for i in element_4:
+    linked_list_8.append(i)
 
-    # Test Case 5: Large linked lists
-    linked_list_9 = LinkedList()
-    linked_list_10 = LinkedList()
+print("Union Test Case 4:", union(linked_list_7, linked_list_8))
+print("Intersection Test Case 4:", intersection(linked_list_7, linked_list_8))
 
-    element_5 = list(range(1000))
-    element_6 = list(range(500, 1500))
+# Test Case 5: Large linked lists
+linked_list_9 = LinkedList()
+linked_list_10 = LinkedList()
 
-    for i in element_5:
-        linked_list_9.append(i)
+element_5 = list(range(1000))
+element_6 = list(range(500, 1500))
 
-    for i in element_6:
-        linked_list_10.append(i)
+for i in element_5:
+    linked_list_9.append(i)
 
-    print("Union Test Case 5:", union(linked_list_9, linked_list_10))
-    print("Intersection Test Case 5:", intersection(linked_list_9, linked_list_10))
+for i in element_6:
+    linked_list_10.append(i)
+
+print("Union Test Case 5:", union(linked_list_9, linked_list_10))
+print("Intersection Test Case 5:", intersection(linked_list_9, linked_list_10))
 
