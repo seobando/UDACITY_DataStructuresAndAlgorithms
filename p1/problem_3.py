@@ -58,48 +58,47 @@ def huffman_decoding(data, tree):
 
     return ''.join(decoded_data)
 
-# Test cases
-if __name__ == "__main__":
-    # Test Case 1: General case
-    a_great_sentence = "The bird is the word"
-    print("Test Case 1")
-    print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
-    print("The content of the data is: {}\n".format(a_great_sentence))
 
-    encoded_data, tree = huffman_encoding(a_great_sentence)
-    print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
-    print("The content of the encoded data is: {}\n".format(encoded_data))
+# Test Case 1: General case
+a_great_sentence = "The bird is the word"
+print("Test Case 1")
+print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+print("The content of the data is: {}\n".format(a_great_sentence))
 
-    decoded_data = huffman_decoding(encoded_data, tree)
-    print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
-    print("The content of the decoded data is: {}\n".format(decoded_data))
-    print()
+encoded_data, tree = huffman_encoding(a_great_sentence)
+print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+print("The content of the encoded data is: {}\n".format(encoded_data))
 
-    # Test Case 2: Edge case with empty string
-    print("Test Case 2")
-    empty_string = ""
-    encoded_data, tree = huffman_encoding(empty_string)
-    decoded_data = huffman_decoding(encoded_data, tree)
-    print("Encoded data:", encoded_data)
-    print("Decoded data:", decoded_data)
-    print()
+decoded_data = huffman_decoding(encoded_data, tree)
+print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+print("The content of the decoded data is: {}\n".format(decoded_data))
+print()
 
-    # Test Case 3: Edge case with a single character repeated
-    print("Test Case 3")
-    single_char_string = "aaaaaaa"
-    encoded_data, tree = huffman_encoding(single_char_string)
-    decoded_data = huffman_decoding(encoded_data, tree)
-    print("Encoded data:", encoded_data)
-    print("Decoded data:", decoded_data)
-    print()
+# Test Case 2: Edge case with empty string
+print("Test Case 2")
+empty_string = ""
+encoded_data, tree = huffman_encoding(empty_string)
+decoded_data = huffman_decoding(encoded_data, tree)
+print("Encoded data:", encoded_data)
+print("Decoded data:", decoded_data)
+print()
 
-    # Test Case 4: Very large string
-    print("Test Case 4")
-    large_string = "a" * 10000 + "b" * 5000 + "c" * 2000
-    encoded_data, tree = huffman_encoding(large_string)
-    decoded_data = huffman_decoding(encoded_data, tree)
-    print("The size of the original data is: {}\n".format(sys.getsizeof(large_string)))
-    print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
-    print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
-    print("The encoded data matches the original data:", large_string == decoded_data)
+# Test Case 3: Edge case with a single character repeated
+print("Test Case 3")
+single_char_string = "aaaaaaa"
+encoded_data, tree = huffman_encoding(single_char_string)
+decoded_data = huffman_decoding(encoded_data, tree)
+print("Encoded data:", encoded_data)
+print("Decoded data:", decoded_data)
+print()
+
+# Test Case 4: Very large string
+print("Test Case 4")
+large_string = "a" * 10000 + "b" * 5000 + "c" * 2000
+encoded_data, tree = huffman_encoding(large_string)
+decoded_data = huffman_decoding(encoded_data, tree)
+print("The size of the original data is: {}\n".format(sys.getsizeof(large_string)))
+print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
+print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+print("The encoded data matches the original data:", large_string == decoded_data)
 
