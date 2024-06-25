@@ -27,7 +27,7 @@ Overall, the space complexity for huffman_encoding is O(n+k+m).
 
 For huffman_decoding, the space complexity is dominated by the storage of the tree and the decoded data, resulting in O(m+k).
 
-## Code Design
+# Code Design
 
 Algorithm Choice: 
 
