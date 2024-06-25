@@ -1,19 +1,19 @@
 
-## Efficiency
+# Efficiency
 
-### Time Complexity:
+## Time Complexity:
 
 get(key): The time complexity of the get method is O(1). This is because both the dictionary lookup and the operations to move the item to the end of the OrderedDict (removal and reinsertion) are O(1) operations.
 
 set(key, value): The time complexity of the set method is also O(1). This is because checking the length of the dictionary, removing the oldest item, and adding a new item are all O(1) operations in an OrderedDict.
 
-### Space Complexity:
+## Space Complexity:
 
 The space complexity of the LRU_Cache class is O(n), where n is the capacity of the cache. This is because we store up to n items in the OrderedDict. Each entry in the dictionary requires O(1) space, leading to a total space requirement proportional to the capacity.
 
-## Code Design
+# Code Design
 
-### Algorithm Choice:
+## Algorithm Choice:
 
 The choice of using an OrderedDict from the collections module is excellent for implementing an LRU cache. The OrderedDict maintains the order of insertion and allows for efficient reordering of elements, which is crucial for the LRU functionality.
 Data Structure:
