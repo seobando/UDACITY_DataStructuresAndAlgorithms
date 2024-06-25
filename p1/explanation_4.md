@@ -1,41 +1,27 @@
-# Efficiency
 
-## Time Complexity
+# Efficiency:
 
-1. Frequency Calculation: The frequency of each character is calculated using Counter(data), which takes 𝑂(𝑛) time, where 𝑛 is the length of the input data.
-2. Heap Initialization: Creating the initial heap with heapq.heapify(heap) has a time complexity of 𝑂(𝑘 log 𝑘), where 𝑘 is the number of unique characters in the data.
-3. Huffman Tree Construction: The while loop that merges nodes runs 𝑘 −1 times (since each iteration reduces the number of nodes by 1). Each heappop and heappush operation takes O(logk), making the total complexity for this part O(klogk).
-4. Code Generation: Generating the Huffman codes involves a depth-first traversal of the tree, which takes O(k) time.
-5. Encoding Data: Encoding the data involves replacing each character with its corresponding Huffman code, resulting in O(n) time complexity.
-The overall time complexity for the huffman_encoding function is O(n+klogk).
+## Time Complexity:
 
-For huffman_decoding:
+The is_user_in_group function checks if a user is in the current group and, if not, recursively checks all subgroups. Let G be the total number of groups and U be the average number of users per group.
 
-Decoding Data: The decoding process involves traversing the tree for each bit in the encoded data, resulting in O(m⋅d), where 𝑚 is the length of the encoded data and 𝑑 is the maximum depth of the tree. In the worst case, 𝑑 can be O(logk).
+In the worst case, the function might need to check each user in each group and each subgroup, leading to a time complexity of O(G×U). This is because in the worst case, each group has to be traversed and each user's membership checked.
 
-Therefore, the overall time complexity for the huffman_decoding function is 𝑂 O(m⋅logk).
+## Space Complexity:
 
-## Space Complexity
+The primary space usage comes from the recursive calls on the call stack.
+In the worst case, the depth of the recursive calls could be equal to the maximum depth of the group hierarchy, which can be denoted as 𝐷.
 
-1. Frequency Calculation: The Counter object requires  O(k) space.
-2. Heap: The heap used for constructing the Huffman tree also requires O(k) space.
-3. Huffman Tree: The Huffman tree itself requires O(k) space, as each node corresponds to a unique character or an internal node.
-4. Codes Dictionary: The dictionary holding the Huffman codes requires O(k) space.
-5. Encoded Data: The encoded data requires O(m) space, where 𝑚 is the length of the encoded string.
+The space complexity due to the call stack is O(D).
 
-Overall, the space complexity for huffman_encoding is O(n+k+m).
+Additional space is used for storing groups and users, but this is typically O(G+U), where G is the number of groups and U is the total number of users across all groups. This storage space is fixed and not dependent on the function call depth, hence less relevant to the immediate space complexity of the function execution.
 
-For huffman_decoding, the space complexity is dominated by the storage of the tree and the decoded data, resulting in O(m+k).
+# Code Design:
 
-## Code Design
+Class Design: The Group class has methods to manage groups and users. This encapsulation is beneficial for maintaining and updating group-user relationships.
+add_group and add_user methods allow dynamic modification of the group’s structure.
+get_groups, get_users, and get_name provide controlled access to the group’s attributes, promoting encapsulation and data integrity.
 
-Algorithm Choice: 
-
-The code uses Huffman encoding, a classic and efficient algorithm for data compression that creates variable-length codes based on character frequencies.
-
-Data Structures:
-
-- Counter from the collections module is used to efficiently calculate character frequencies.
-- A min-heap (heapq) is used to construct the Huffman tree, ensuring efficient extraction of the minimum frequency nodes.
-- A custom Node class (subclass of namedtuple) is used to represent tree nodes, providing clarity and immutability.
-- The use of recursion in generate_codes provides a clean and straightforward method for traversing the tree to generate codes.
+Recursive Algorithm: The recursive approach in is_user_in_group is intuitive for checking membership within nested structures.
+Pro: The code is simple and easy to understand.
+Con: Recursive depth could lead to stack overflow if the group hierarchy is too deep (though Python handles reasonably deep recursion well).
