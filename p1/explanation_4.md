@@ -1,5 +1,5 @@
 
-# Efficiency:
+# Efficiency
 
 ## Time Complexity:
 
@@ -16,7 +16,7 @@ The space complexity due to the call stack is O(D).
 
 Additional space is used for storing groups and users, but this is typically O(G+U), where G is the number of groups and U is the total number of users across all groups. This storage space is fixed and not dependent on the function call depth, hence less relevant to the immediate space complexity of the function execution.
 
-# Code Design:
+# Code Design
 
 Class Design: The Group class has methods to manage groups and users. This encapsulation is beneficial for maintaining and updating group-user relationships.
 add_group and add_user methods allow dynamic modification of the group’s structure.
