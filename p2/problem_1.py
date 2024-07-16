@@ -7,7 +7,30 @@ def sqrt(number):
     Returns:
        int: Floored Square Root
     """
-    pass
+    
+    if number < 0:
+        return None
+    
+    if number == 0 or number == 1:
+        return number
+    
+    start = 0
+    end = number
+    floor_sqrt = 0
+
+    while start <= end:
+        mid = (start + end) // 2
+        mid_squared = mid * mid
+        
+        if mid_squared == number:
+            return mid
+        elif mid_squared < number:
+            start = mid + 1
+            floor_sqrt = mid
+        else:
+            end = mid - 1
+            
+    return floor_sqrt
 
 print ("Pass" if  (3 == sqrt(9)) else "Fail")
 print ("Pass" if  (0 == sqrt(0)) else "Fail")
